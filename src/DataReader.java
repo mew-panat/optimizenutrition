@@ -3,19 +3,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+public class DataReader {
+    private static List<Food> beverage = new ArrayList<>();
+    private static List<Food> mainDish = new ArrayList<>();
+    private static List<Food> fruit = new ArrayList<>();
+    private static List<Food> snack = new ArrayList<>();
 
-public class csvReader {
-    static List<InitFood> beverage = new ArrayList<InitFood>();
-    static List<InitFood> mainDish = new ArrayList<InitFood>();
-    static List<InitFood> fruit = new ArrayList<InitFood>();
-    static List<InitFood> snack = new ArrayList<InitFood>();
-    public void readbeverage(String file) {
-        InitFood newFood = null;
+    private void readBeverage(String file) {
+        Food newFood = null;
         String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
-                newFood = new InitFood(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2])
+                newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
                         , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
                         , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
                         , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
@@ -26,13 +26,13 @@ public class csvReader {
             e.printStackTrace();
         }
     }
-    public void readMainDish(String file) {
-        InitFood newFood = null;
+    private void readMainDish(String file) {
+        Food newFood = null;
         String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
-                newFood = new InitFood(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2])
+                newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
                         , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
                         , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
                         , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
@@ -43,13 +43,13 @@ public class csvReader {
             e.printStackTrace();
         }
     }
-    public void readFruit(String file) {
-        InitFood newFood = null;
+    private void readFruit(String file) {
+        Food newFood = null;
         String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
-                newFood = new InitFood(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2])
+                newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
                         , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
                         , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
                         , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
@@ -60,13 +60,13 @@ public class csvReader {
             e.printStackTrace();
         }
     }
-    public void readSnack(String file) {
-        InitFood newFood = null;
+    private void readSnack(String file) {
+        Food newFood = null;
         String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
-                newFood = new InitFood(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2])
+                newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
                         , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
                         , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
                         , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
@@ -77,30 +77,30 @@ public class csvReader {
             e.printStackTrace();
         }
     }
-    public static List<InitFood> readBeverage() {
-        String file = "csv/Beverage.csv";
-        csvReader foodreader = new csvReader();
-        foodreader.readbeverage(file);
+
+    public static List<Food> getBeverage() {
+        String file = "dataset/Beverage.csv";
+        DataReader foodreader = new DataReader();
+        foodreader.readBeverage(file);
         return beverage;
     }
-    public static List<InitFood> readMainDish() {
-        String file = "csv/MainDish.csv";
-        csvReader foodreader = new csvReader();
+    public static List<Food> getMainDish() {
+        String file = "dataset/MainDish.csv";
+        DataReader foodreader = new DataReader();
         foodreader.readMainDish(file);
         return mainDish;
     }
-    public static List<InitFood> readFruit() {
-        String file = "csv/Fruit.csv";
-        csvReader foodreader = new csvReader();
+    public static List<Food> getFruit() {
+        String file = "dataset/Fruit.csv";
+        DataReader foodreader = new DataReader();
         foodreader.readFruit(file);
         return fruit;
     }
 
-    public static List<InitFood> readSnack() {
-        String file = "csv/Snacks.csv";
-        csvReader foodreader = new csvReader();
+    public static List<Food> getSnack() {
+        String file = "dataset/Snacks.csv";
+        DataReader foodreader = new DataReader();
         foodreader.readSnack(file);
         return snack;
     }
-
 }

@@ -1,17 +1,17 @@
-public class InitFood {
+public class Food {
     private String binary;
     private String name;
-    private double energy;
+    private float energy;
     private double protein;
     private double carb;
     private double fat;
     private double sugar;
-    private double price;
     private double calcium;
     private double fiber;
+    private double price;
     private double cookingTime;
 
-    public InitFood(String binary, String name, double energy, double carb, double protein, double fat, double sugar, double calcium, double fiber, double price, double cookingTime) {
+    public Food(String binary, String name, float energy, double protein, double carb, double fat, double sugar, double calcium, double fiber, double price, double cookingTime) {
         this.binary = binary;
         this.name = name;
         this.energy = energy;
@@ -19,9 +19,9 @@ public class InitFood {
         this.carb = carb;
         this.fat = fat;
         this.sugar = sugar;
-        this.price = price;
         this.calcium = calcium;
         this.fiber = fiber;
+        this.price = price;
         this.cookingTime = cookingTime;
     }
 
@@ -37,7 +37,7 @@ public class InitFood {
         return name;
     }
 
-    public double getCal() {
+    public double getEnergy() {
         return energy;
     }
 
@@ -57,12 +57,19 @@ public class InitFood {
         return sugar;
     }
 
-    public  double getCalcium() {return calcium;}
+    public double getCalcium() {
+        return calcium;
+    }
 
-    public  double getFiber() {return fiber;}
+    public double getFiber() {
+        return fiber;
+    }
 
-    public double getPrice() { return price; }
+    public double getPrice() {
+        return price;
+    }
 
-    public double getCookingTime() { return cookingTime;}
+    public double getCookingTime() {
+        return cookingTime;
+    }
 }
-
