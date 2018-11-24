@@ -16,10 +16,10 @@ public class DataReader {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
                 newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
-                        , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
-                        , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
-                        , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
-                        , Double.parseDouble(splitStr[9]), Double.parseDouble(splitStr[10]));
+                        , Float.parseFloat(splitStr[3]), Float.parseFloat(splitStr[4])
+                        , Float.parseFloat(splitStr[5]), Float.parseFloat(splitStr[6])
+                        , Float.parseFloat(splitStr[7]), Float.parseFloat(splitStr[8])
+                        , Float.parseFloat(splitStr[9]), Float.parseFloat(splitStr[10]));
                 beverage.add(newFood);
             }
         } catch (IOException e) {
@@ -33,10 +33,10 @@ public class DataReader {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
                 newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
-                        , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
-                        , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
-                        , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
-                        , Double.parseDouble(splitStr[9]), Double.parseDouble(splitStr[10]));
+                        , Float.parseFloat(splitStr[3]), Float.parseFloat(splitStr[4])
+                        , Float.parseFloat(splitStr[5]), Float.parseFloat(splitStr[6])
+                        , Float.parseFloat(splitStr[7]), Float.parseFloat(splitStr[8])
+                        , Float.parseFloat(splitStr[9]), Float.parseFloat(splitStr[10]));
                 mainDish.add(newFood);
             }
         } catch (IOException e) {
@@ -50,10 +50,10 @@ public class DataReader {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
                 newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
-                        , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
-                        , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
-                        , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
-                        , Double.parseDouble(splitStr[9]), Double.parseDouble(splitStr[10]));
+                        , Float.parseFloat(splitStr[3]), Float.parseFloat(splitStr[4])
+                        , Float.parseFloat(splitStr[5]), Float.parseFloat(splitStr[6])
+                        , Float.parseFloat(splitStr[7]), Float.parseFloat(splitStr[8])
+                        , Float.parseFloat(splitStr[9]), Float.parseFloat(splitStr[10]));
                 fruit.add(newFood);
             }
         } catch (IOException e) {
@@ -67,10 +67,10 @@ public class DataReader {
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.trim().split(",");
                 newFood = new Food(splitStr[0], splitStr[1], Float.parseFloat(splitStr[2])
-                        , Double.parseDouble(splitStr[3]), Double.parseDouble(splitStr[4])
-                        , Double.parseDouble(splitStr[5]), Double.parseDouble(splitStr[6])
-                        , Double.parseDouble(splitStr[7]), Double.parseDouble(splitStr[8])
-                        , Double.parseDouble(splitStr[9]), Double.parseDouble(splitStr[10]));
+                        , Float.parseFloat(splitStr[3]), Float.parseFloat(splitStr[4])
+                        , Float.parseFloat(splitStr[5]), Float.parseFloat(splitStr[6])
+                        , Float.parseFloat(splitStr[7]), Float.parseFloat(splitStr[8])
+                        , Float.parseFloat(splitStr[9]), Float.parseFloat(splitStr[10]));
                 snack.add(newFood);
             }
         } catch (IOException e) {

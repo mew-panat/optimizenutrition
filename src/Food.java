@@ -2,16 +2,16 @@ public class Food {
     private String binary;
     private String name;
     private float energy;
-    private double protein;
-    private double carb;
-    private double fat;
-    private double sugar;
-    private double calcium;
-    private double fiber;
-    private double price;
-    private double cookingTime;
+    private float protein;
+    private float carb;
+    private float fat;
+    private float sugar;
+    private float calcium;
+    private float fiber;
+    private float price;
+    private float cookingTime;
 
-    public Food(String binary, String name, float energy, double carb, double protein, double fat, double sugar, double calcium, double fiber, double price, double cookingTime) {
+    public Food(String binary, String name, float energy, float carb, float protein, float fat, float sugar, float calcium, float fiber, float price, float cookingTime) {
         this.binary = binary;
         this.name = name;
         this.energy = energy;
@@ -41,35 +41,35 @@ public class Food {
         return energy;
     }
 
-    public double getProtein() {
+    public float getProtein() {
         return protein;
     }
 
-    public double getCarb() {
+    public float getCarb() {
         return carb;
     }
 
-    public double getFat() {
+    public float getFat() {
         return fat;
     }
 
-    public double getSugar() {
+    public float getSugar() {
         return sugar;
     }
 
-    public double getCalcium() {
+    public float getCalcium() {
         return calcium;
     }
 
-    public double getFiber() {
+    public float getFiber() {
         return fiber;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public double getCookingTime() {
+    public float getCookingTime() {
         return cookingTime;
     }
 }

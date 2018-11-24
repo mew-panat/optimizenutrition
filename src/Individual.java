@@ -3,7 +3,7 @@ import java.util.Random;
 public class Individual {
     public static final int geneLength = 31;
     int[] genes = new int[geneLength];
-    private double fitness = 0;
+    private float fitness = 0;
 
     public void generateIndividual() {
         Random rn = new Random();
@@ -12,14 +12,18 @@ public class Individual {
         }
     }
 
+    public int size() {
+        return genes.length;
+    }
+
     public int getGene(int index) {
         return genes[index];
     }
-    public void setGene(int index, byte value) {
+    public void setGene(int index, int value) {
         genes[index] = value;
         fitness = 0;
     }
-    public double getFitness() {
+    public float getFitness() {
         if (fitness == 0) {
             fitness = FitnessCalc.getFitness(this);
         }

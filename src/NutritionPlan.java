@@ -2,6 +2,18 @@ import java.util.Scanner;
 public class NutritionPlan {
     public static final int populationSize = 40;
     private static float BMR = 0.0f;
+    public static float energy;
+    public static float lb_protein;
+    public static float ub_protein;
+    public static float lb_carb;
+    public static float ub_carb;
+    public static float lb_fat;
+    public static float ub_fat;
+    public static float lb_sugar;
+    public static float ub_sugar;
+    public static float lb_calcium;
+    public static float ub_calcium;
+    public static float fiber;
 
     private static void getInput(){
         Scanner reader = new Scanner(System.in);
@@ -39,18 +51,26 @@ public class NutritionPlan {
     }
 
     private static void calConstraint(){
-        float energy = BMR;
-        double lb_protein = 0.1 * energy / 4;
-        double ub_protein = 0.35 * energy / 4;
-        double lb_carb = 0.45 * energy / 4;
-        double ub_carb = 0.65 * energy / 4;
-        double lb_fat = energy * 0.2 / 9;
-        double ub_fat = energy * 0.35 / 9;
-        double lb_sugar = 24;
-        double ub_sugar = 60;
-        double fiber = energy * 14 / 1000;
-        double lb_calcium = 1000;
-        double ub_calcium = 1500;
+        energy = BMR;
+        lb_protein = 0.1f * energy / 4;
+        ub_protein = 0.35f * energy / 4;
+        lb_carb = 0.45f * energy / 4;
+        ub_carb = 0.65f * energy / 4;
+        lb_fat = energy * 0.2f / 9;
+        ub_fat = energy * 0.35f / 9;
+        lb_sugar = 24;
+        ub_sugar = 60;
+        fiber = energy * 14 / 1000;
+        lb_calcium = 1000;
+        ub_calcium = 1500;
+
+        System.out.println("\n--- Your nutrition need per day ---\n"
+                + lb_carb + " <= Carbohydrate <= " + ub_carb + "\n"
+                + lb_protein + " <= Protein <= " + ub_protein + "\n"
+                + lb_fat + " <= Fat <= " + ub_fat + "\n"
+                + lb_sugar + " <= Sugar <= " + ub_sugar + "\n"
+                + lb_calcium + " <= Calcium <= " + ub_calcium + "\n"
+                + "Fiber < " + fiber + "\n");
     }
 
     private static void setFood(){
@@ -58,19 +78,25 @@ public class NutritionPlan {
     }
 
     public static void main(String[] args) {
-        double fitness;
+        float fitness;
+        int generation = 500;
         Individual fittest;
-        //getInput();
+        getInput();
         setFood();
         //initial population
-        Population myPop = new Population(40, true);
+        Population myPop = new Population(100, true);
         //print population
-        myPop.printPopulation();
+        //myPop.printPopulation();
+        for(int i=0 ; i<generation ;i++) {
+            myPop.getFittest().getFitness();
+            System.out.println("Generation: " + i + " Fittest: " + myPop.getFittest().getFitness());
+            myPop = GA.evolvePopulation(myPop);
+            //myPop.printOptimalFood();
+        }
+        System.out.println("Solution found!");
+        System.out.println("Total cost:");
         fittest = myPop.getFittest();
-        fitness = fittest.getFitness();
-        System.out.println("fitness " + fitness);
+        System.out.println(fittest.getFitness());
         myPop.printOptimalFood();
-        myPop = GA.evolvePopulation(myPop);
-
     }
 }

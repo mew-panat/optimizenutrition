@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FitnessCalc {
-    public static double getFitness(Individual individual) {
-        double fitness;
+    public static float getFitness(Individual individual) {
+        float fitness;
         String b1 = convertBinary(0, 4, individual);
         String b2 = convertBinary(4, 8, individual);
         String m1 = convertBinary(8, 13, individual);
