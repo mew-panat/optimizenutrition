@@ -11,7 +11,7 @@ public class Food {
     private double price;
     private double cookingTime;
 
-    public Food(String binary, String name, float energy, double protein, double carb, double fat, double sugar, double calcium, double fiber, double price, double cookingTime) {
+    public Food(String binary, String name, float energy, double carb, double protein, double fat, double sugar, double calcium, double fiber, double price, double cookingTime) {
         this.binary = binary;
         this.name = name;
         this.energy = energy;

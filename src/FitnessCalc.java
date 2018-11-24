@@ -2,10 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FitnessCalc {
-    List<Food> beverage = new ArrayList<>();
-    List<Food> mainDish = new ArrayList<>();
-    List<Food> fruit = new ArrayList<>();
-    List<Food> snack = new ArrayList<>();
     public static double getFitness(Individual individual) {
         double fitness;
         String b1 = convertBinary(0, 4, individual);
@@ -16,14 +12,14 @@ public class FitnessCalc {
         String f1 = convertBinary(23, 27, individual);
         String s1 = convertBinary(27, 31, individual);
 
-        fitness = getBeveragePrice(b1) + getBeveragePrice(b2)
-                + getMaindishPrice(m1) + getMaindishPrice(m2) + getMaindishPrice(m3)
-                + getFruitPrice(f1) + getSnackPrice(s1);
-        System.out.println("Cost:" + fitness);
+        fitness = getBeverage(b1).getPrice() + getBeverage(b2).getPrice()
+                + getMaindish(m1).getPrice() + getMaindish(m2).getPrice() + getMaindish(m3).getPrice()
+                + getFruit(f1).getPrice() + getSnack(s1).getPrice();
+        //System.out.println("Cost:" + fitness);
         return fitness;
     }
 
-    private static String convertBinary(int start, int end, Individual individual){
+    public static String convertBinary(int start, int end, Individual individual){
         String[] a = new String[end-start];
 
         for (int i = start; i < end; i++) {
@@ -38,35 +34,35 @@ public class FitnessCalc {
         }
         return builder.toString();
     }
-    private static Double getBeveragePrice(String binary) {
+    public static Food getBeverage(String binary) {
         Food food;
         food = FoodData.matchBeverage(binary);
         if(food!=null)
-            return food.getPrice();
-        else return 0.0;
+            return food;
+        else return null;
     }
 
-    private static Double getMaindishPrice(String binary) {
+    public static Food getMaindish(String binary) {
         Food food;
         food = FoodData.matchMaindish(binary);
         if(food!=null)
-            return food.getPrice();
-        else return 0.0;
+            return food;
+        else return null;
     }
 
-    private static Double getFruitPrice(String binary) {
+    public static Food getFruit(String binary) {
         Food food;
         food = FoodData.matchFruit(binary);
         if(food!=null)
-            return food.getPrice();
-        else return 0.0;
+            return food;
+        else return null;
     }
 
-    private static Double getSnackPrice(String binary) {
+    public static Food getSnack(String binary) {
         Food food;
         food = FoodData.matchSnack(binary);
         if(food!=null)
-            return food.getPrice();
-        else return 0.0;
+            return food;
+        else return null;
     }
 }

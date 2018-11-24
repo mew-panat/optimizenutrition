@@ -58,14 +58,18 @@ public class NutritionPlan {
     }
 
     public static void main(String[] args) {
+        double fitness;
+        Individual fittest;
         //getInput();
         setFood();
-        //FoodData.printAllFood();
         //initial population
         Population myPop = new Population(40, true);
         //print population
         myPop.printPopulation();
-        myPop.getFittest().getFitness();
+        fittest = myPop.getFittest();
+        fitness = fittest.getFitness();
+        System.out.println("fitness " + fitness);
+        myPop.printOptimalFood();
         myPop = GA.evolvePopulation(myPop);
 
     }

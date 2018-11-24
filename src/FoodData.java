@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodData{
-    private static List<Food> beverage = new ArrayList<>();
-    private static List<Food> mainDish = new ArrayList<>();
-    private static List<Food> fruit = new ArrayList<>();
-    private static List<Food> snack = new ArrayList<>();
+    private static List<Food> beverage = new ArrayList<>(); //15 beverages (4 bits)
+    private static List<Food> mainDish = new ArrayList<>(); //32 dishes (5 bits)
+    private static List<Food> fruit = new ArrayList<>(); //15 fruits (4 bits)
+    private static List<Food> snack = new ArrayList<>(); //15 snacks (4 bits)
 
     public static void readFood(){
         beverage = DataReader.getBeverage();
