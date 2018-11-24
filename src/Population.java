@@ -1,16 +1,24 @@
+
 public class Population {
     Individual[] individuals;
+    final static int geneLength = 31;
     // Create a population
     public Population(int populationSize, boolean initialise) {
         individuals = new Individual[populationSize];
-        // Initialise population
         if (initialise) {
-            // Loop and create individuals
-            for (int i = 0; i < size(); i++) {
-                Individual newIndividual = new Individual();
-                newIndividual.generateIndividual();
-                saveIndividual(i, newIndividual);
+            for (int i = 0; i < populationSize; i++) {
+                individuals[i] = new Individual();
+                individuals[i].generateIndividual();
             }
+        }
+    }
+
+    public void printPopulation(){
+        for(int i=0; i<40;i++) {
+            for (int j = 0; j < geneLength; j++) {
+                System.out.print(individuals[i].getGene(j));
+            }
+            System.out.println();
         }
     }
 
@@ -25,9 +33,12 @@ public class Population {
     public Individual getFittest() {
         Individual fittest = individuals[0];
         // Loop through individuals to find fittest
-        for (int i = 0; i < size(); i++) {
-            if (getIndividual(i).getFitness() <= fittest.getFitness()) {
-                fittest = getIndividual(i);
+        for (int i = 0; i < individuals.length; i++) {
+            Individual individual = individuals[i];
+            System.out.println("individual " + individual.getFitness());
+            System.out.println("Fittest " + fittest.getFitness());
+            if (individual.getFitness() <= fittest.getFitness()) {
+                fittest = individual;
             }
         }
         return fittest;

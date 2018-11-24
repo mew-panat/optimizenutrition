@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class NutritionPlan {
+    public static final int populationSize = 40;
     private static float BMR = 0.0f;
 
     private static void getInput(){
@@ -57,9 +58,15 @@ public class NutritionPlan {
     }
 
     public static void main(String[] args) {
-        getInput();
+        //getInput();
         setFood();
         //FoodData.printAllFood();
-        GA.GeneticAlgo();
+        //initial population
+        Population myPop = new Population(40, true);
+        //print population
+        myPop.printPopulation();
+        myPop.getFittest().getFitness();
+        myPop = GA.evolvePopulation(myPop);
+
     }
 }
