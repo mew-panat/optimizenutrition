@@ -16,7 +16,7 @@ public class bruteforce{
         return i >= LB && i <= UB;
     }
     private static float getDayPrice(){
-        int price = 0;
+        float price = 0;
         for (Food f : selectedBeverage) {
             price += f.getPrice();
         }
@@ -36,48 +36,36 @@ public class bruteforce{
         float carb = 0;
         float fat = 0;
         float sugar = 0;
-        float calcium = 0;
-        float fiber = 0;
         for (Food f : selectedBeverage) {
             protein += f.getProtein();
             carb += f.getCarb();
             fat += f.getFat();
             sugar += f.getSugar();
-            fiber += f.getFiber();
-            calcium += f.getCalcium();
         }
         for (Food f : selectedMainDish) {
             protein += f.getProtein();
             carb += f.getCarb();
             fat += f.getFat();
             sugar += f.getSugar();
-            fiber += f.getFiber();
-            calcium += f.getCalcium();
         }
         for (Food f : selectedFruit) {
             protein += f.getProtein();
             carb += f.getCarb();
             fat += f.getFat();
             sugar += f.getSugar();
-            fiber += f.getFiber();
-            calcium += f.getCalcium();
         }
         for (Food f : selectedSnack) {
             protein += f.getProtein();
             carb += f.getCarb();
             fat += f.getFat();
             sugar += f.getSugar();
-            fiber += f.getFiber();
-            calcium += f.getCalcium();
         }
 
         // if violate any constraint - return false
-        return (range(protein, NutritionPlan.lb_protein, NutritionPlan.ub_protein))
-                && (range(carb, NutritionPlan.lb_carb, NutritionPlan.ub_carb))
-                && (range(fat, NutritionPlan.lb_fat, NutritionPlan.ub_fat))
-                && (range(sugar, NutritionPlan.lb_sugar, NutritionPlan.ub_sugar))
-                && (fiber < NutritionPlan.fiber)
-                && (range(calcium, NutritionPlan.lb_calcium, NutritionPlan.ub_calcium));
+        if(carb < NutritionPlan.lb_carb || protein < NutritionPlan.lb_protein
+                || fat < NutritionPlan.lb_fat || sugar > NutritionPlan.ub_sugar)
+            return false;
+        return true;
     }
     public static void bruteForceAlgo(){
         NutritionPlan.getInput();
@@ -136,8 +124,8 @@ public class bruteforce{
 
         System.out.println(beverageCount + " " + maindishCount + " " + fruitCount + " " + snackCount);
 
-        double price;
-        double minPrice = 3000;
+        float price;
+        float minPrice = 3000;
         for (int i = 0; i < beverageCount; i++) {
             selectedBeverage.clear();
             selectedMainDish.clear();
@@ -194,7 +182,7 @@ public class bruteforce{
         }
         System.out.println("Minimum is " + minPrice);
         if (optimalBeverage.size() > 0) {
-            System.out.println("2 Beverages: " + optimalBeverage.get(0).getName() + optimalBeverage.get(1).getName()
+            System.out.println("2 Beverages: " + optimalBeverage.get(0).getName() + " " + optimalBeverage.get(1).getName()
                     + "\n3 Main Dishes: " + optimalMainDish.get(0).getName() + " " + optimalMainDish.get(1).getName()
                     + " " + optimalMainDish.get(2).getName()
                     + "\n 1 Fruit: " + optimalFruit.get(0).getName() + "\n 1 Snack: " + optimalSnack.get(0).getName());

@@ -35,32 +35,32 @@ public class FitnessCalc {
     public static Food getBeverage(String binary) {
         Food food;
         food = FoodData.matchBeverage(binary);
-        if(food!=null)
+        //if(food!=null)
             return food;
-        else return null;
+        //return null;
     }
 
     public static Food getMaindish(String binary) {
         Food food;
         food = FoodData.matchMaindish(binary);
-        if(food!=null)
+        //if(food!=null)
             return food;
-        else return null;
+        //return null;
     }
 
     public static Food getFruit(String binary) {
         Food food;
         food = FoodData.matchFruit(binary);
-        if(food!=null)
+        //if(food!=null)
             return food;
-        else return null;
+        //return null;
     }
 
     public static Food getSnack(String binary) {
         Food food;
         food = FoodData.matchSnack(binary);
-        if(food!=null)
+        //if(food!=null)
             return food;
-        else return null;
+       // return null;
     }
 }

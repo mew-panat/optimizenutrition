@@ -2,20 +2,24 @@ import java.util.Random;
 
 public class GA {
     //GA parameter
-    private static final double crossoverRate = 0.95;
-    private static final double mutationRate = 0.015;
-    private static final int selectionSize = 100;
+    private static final double crossoverRate = 0.9;
+    private static final double mutationRate = 0.1;
+    private static final int selectionSize = 10;
     private static final boolean elitism = true;
+    final static int elitismCount = 5;
 
     public static Population evolvePopulation(Population pop) {
         Population newPopulation = new Population(pop.size(), false);
         //Elitism
+
         if (elitism) {
-            newPopulation.saveIndividual(0, pop.getFittest());
+            for(int i=0 ; i<elitismCount ; i++) {
+                newPopulation.saveIndividual(i, pop.getFittest());
+            }
         }
         int elitismOffset;
         if (elitism) {
-            elitismOffset = 1;
+            elitismOffset = elitismCount;
         } else {
             elitismOffset = 0;
         }

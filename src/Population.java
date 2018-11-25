@@ -51,13 +51,13 @@ public class Population {
         // Loop through individuals to find fittest
         for (int i = 0; i < individuals.length; i++) {
             Individual individual = individuals[i];
-//            System.out.println("individual " + individual.getFitness());
-//            System.out.println("Fittest " + fittest.getFitness());
+//           System.out.println("individual " + individual.getFitness());
+//           System.out.println("Fittest " + fittest.getFitness());
             if (individual.getFitness() < fittest.getFitness()) {
-                if(!isDuplicateFood(individual));
-                {
-                    if(checkConstraints())
-                        fittest = individual;
+                if(isValid(individual)) {
+                    if(checkConstraints()) {
+                            fittest = individual;
+                    }
                 }
             }
         }
@@ -70,8 +70,28 @@ public class Population {
         individuals[index] = indiv;
     }
 
+    public boolean isValid(Individual individual){
+        selectBeverage.clear();
+        selectMaindish.clear();
+        selectFruit.clear();
+        selectSnack.clear();
+        FitnessCalc fit = new FitnessCalc();
+        String b1 = fit.convertBinary(0, 4, individual);
+        String b2 = fit.convertBinary(4, 8, individual);
+        String m1 = fit.convertBinary(8, 13, individual);
+        String m2 = fit.convertBinary(13, 18, individual);
+        String m3 = fit.convertBinary(18, 23, individual);
+        String f1 = fit.convertBinary(23, 27, individual);
+        String s1 = fit.convertBinary(27, 31, individual);
+
+        if(isDuplicateBeverage(b1) || isDuplicateBeverage(b2)
+                || isDuplicateMaindish(m1) || isDuplicateMaindish(m2) || isDuplicateMaindish(m3)
+                || isDuplicateFruit(f1) || isDuplicateSnack(s1))
+            return false;
+        return true;
+    }
     public List<Food> getOptimalFood(Individual fittest){
-       optimal.clear();
+        optimal.clear();
 
         FitnessCalc fit = new FitnessCalc();
         String b1 = fit.convertBinary(0, 4, fittest);
@@ -132,17 +152,11 @@ public class Population {
                 + "Carbohydrate: " + carb + "\n"
                 + "Protein: " + protein + "\n"
                 + "Fat: " + fat + "\n"
-                + "Sugar: " + sugar + "\n"
-                + "Calcium: " + calcium + "\n"
-                + "Fiber: " + fiber + "\n");
-
-    }
-
-    public boolean range(float i, float LB, float UB){
-        return i >= LB && i <= UB;
+                + "Sugar: " + sugar + "\n");
     }
 
     public boolean checkConstraints(){
+        //System.out.print("8888");
         if(selectBeverage.size()!=2 || selectMaindish.size()!=3 || selectFruit.size()!=1 || selectSnack.size()!=1)
             return false;
 
@@ -150,136 +164,80 @@ public class Population {
         float protein = 0;
         float fat = 0;
         float sugar = 0;
-        float calcium = 0;
-        float fiber = 0;
         for (Food food : selectBeverage) {
             carb += food.getCarb();
             protein += food.getProtein();
             fat += food.getFat();
             sugar += food.getSugar();
-            calcium += food.getCalcium();
-            fiber += food.getFiber();
         }
         for (Food food : selectMaindish) {
             carb += food.getCarb();
             protein += food.getProtein();
             fat += food.getFat();
             sugar += food.getSugar();
-            calcium += food.getCalcium();
-            fiber += food.getFiber();
         }
         for (Food food : selectFruit) {
             carb += food.getCarb();
             protein += food.getProtein();
             fat += food.getFat();
             sugar += food.getSugar();
-            calcium += food.getCalcium();
-            fiber += food.getFiber();
         }
         for (Food food : selectSnack) {
             carb += food.getCarb();
             protein += food.getProtein();
             fat += food.getFat();
             sugar += food.getSugar();
-            calcium += food.getCalcium();
-            fiber += food.getFiber();
         }
         //return true if all constraints are in range
-        return (range(protein, NutritionPlan.lb_protein, NutritionPlan.ub_protein))
-                && (range(carb, NutritionPlan.lb_carb, NutritionPlan.ub_carb))
-                && (range(fat, NutritionPlan.lb_fat, NutritionPlan.ub_fat))
-                && (range(sugar, NutritionPlan.lb_sugar, NutritionPlan.ub_sugar))
-                && (fiber < NutritionPlan.fiber)
-                && (range(calcium, NutritionPlan.lb_calcium, NutritionPlan.ub_calcium));
+        if(carb < NutritionPlan.lb_carb || protein < NutritionPlan.lb_protein
+                || fat < NutritionPlan.lb_fat || sugar > NutritionPlan.ub_sugar)
+            return false;
+        return true;
     }
 
-    public boolean isDuplicateFood(Individual individual){
-        selectBeverage.clear();
-        selectMaindish.clear();
-        selectFruit.clear();
-        selectSnack.clear();
-
-
-        boolean duplicateFruit = false;
-        boolean duplicateSnack = false;
+    public boolean isDuplicateBeverage(String beverage){
         FitnessCalc fit = new FitnessCalc();
-        String b1 = fit.convertBinary(0, 4, individual);
-        String b2 = fit.convertBinary(4, 8, individual);
-        String m1 = fit.convertBinary(8, 13, individual);
-        String m2 = fit.convertBinary(13, 18, individual);
-        String m3 = fit.convertBinary(18, 23, individual);
-        String f1 = fit.convertBinary(23, 27, individual);
-        String s1 = fit.convertBinary(27, 31, individual);
 
-        // check duplicate beverage b1
-        boolean duplicateBeverage = false;
         for (Food food : selectBeverage) {
-            if (food.equals(fit.getBeverage(b1))) {
+            if (food.getBinary().equals(beverage)) {
                 //System.out.println("Duplicate Beverage!");
-                duplicateBeverage = true;
+                return true;
             }
         }
-        if(!duplicateBeverage) selectBeverage.add(fit.getBeverage(b1));
-
-        // check duplicate beverage b2
-        duplicateBeverage = false;
-        for (Food food : selectBeverage) {
-            if (food.equals(fit.getBeverage(b2))) {
-                //System.out.println("Duplicate Beverage!");
-                duplicateBeverage = true;
-            }
-        }
-        if(!duplicateBeverage) selectBeverage.add(fit.getBeverage(b2));
-
-        // check duplicate main dish m1
-        boolean duplicateMaindish = false;
+        selectBeverage.add(fit.getBeverage(beverage));
+        return false;
+    }
+    public boolean isDuplicateMaindish(String maindish){
+        FitnessCalc fit = new FitnessCalc();
         for (Food food : selectMaindish) {
-            if (food.equals(fit.getMaindish(m1))) {
+            if (food.getBinary().equals(maindish)) {
                 //System.out.println("Duplicate Main dish!");
-                duplicateMaindish = true;
+                return true;
             }
         }
-        if(!duplicateMaindish) selectMaindish.add(fit.getMaindish(m1));
-
-        // check duplicate main dish m2
-        duplicateMaindish = false;
-        for (Food food : selectMaindish) {
-            if (food.equals(fit.getMaindish(m2))) {
-                //System.out.println("Duplicate Main dish!");
-                duplicateMaindish = true;
-            }
-        }
-        if(!duplicateMaindish) selectMaindish.add(fit.getMaindish(m2));
-
-        // check duplicate main dish m3
-        duplicateMaindish = false;
-        for (Food food : selectMaindish) {
-            if (food.equals(fit.getMaindish(m3))) {
-                //System.out.println("Duplicate Main dish!");
-                duplicateMaindish = true;
-            }
-        }
-        if(!duplicateMaindish) selectMaindish.add(fit.getMaindish(m3));
-
-        // check duplicate fruit f1
+        selectMaindish.add(fit.getMaindish(maindish));
+        return false;
+    }
+    public boolean isDuplicateFruit(String fruit){
+        FitnessCalc fit = new FitnessCalc();
         for (Food food : selectFruit) {
-            if (food.equals(fit.getFruit(f1))) {
+            if (food.getBinary().equals(fruit)) {
                 //System.out.println("Duplicate Fruit!");
-                duplicateFruit = true;
+                return true;
             }
         }
-        if(!duplicateFruit) selectFruit.add(fit.getFruit(f1));
-
-        // check duplicate fruit s1
+        selectFruit.add(fit.getFruit(fruit));
+        return false;
+    }
+    public boolean isDuplicateSnack(String snack){
+        FitnessCalc fit = new FitnessCalc();
         for (Food food : selectSnack) {
-            if (food.equals(fit.getSnack(s1))) {
+            if (food.getBinary().equals(snack)) {
                 //System.out.println("Duplicate Snack!");
-                duplicateSnack = true;
+                return true;
             }
         }
-        if(!duplicateSnack) selectSnack.add(fit.getSnack(s1));
-
-        //if one of duplicate flags are true, have duplicate food
-        return !(duplicateBeverage || duplicateMaindish || duplicateFruit || duplicateSnack);
+        selectSnack.add(fit.getSnack(snack));
+        return false;
     }
 }
