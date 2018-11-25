@@ -86,7 +86,7 @@ public class NutritionPlan {
         int duplicate = 0;
         Individual fittest;
         //initial population
-        Population myPop = new Population(120, true);
+        Population myPop = new Population(populationSize, true);
         //print population
         //myPop.printPopulation();
         for (int i = 0; i < generation; i++) {
@@ -98,7 +98,7 @@ public class NutritionPlan {
                 //System.out.println(duplicate);
             }
         }
-        if (duplicate >= 1000) {
+        if (duplicate > generation) {
             System.out.println("There is no available menu for you");
         } else {
             System.out.println("Solution found!");
@@ -113,8 +113,8 @@ public class NutritionPlan {
         getInput();
         setFood();
 
-        System.out.println(" --- Brute Force Algorithm --- \n");
-        bruteforce.bruteForceAlgo();
+//        System.out.println(" --- Brute Force Algorithm --- \n");
+//        bruteforce.bruteForceAlgo();
 
         System.out.println(" --- Genetic Algorithm --- \n");
         inputParameter();
