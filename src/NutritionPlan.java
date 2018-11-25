@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class NutritionPlan {
-    public static final int populationSize = 40;
     private static float BMR = 0.0f;
     public static float energy;
     public static float lb_protein;
@@ -45,7 +44,7 @@ public class NutritionPlan {
         else if(n==3) BMR = 1.55f;
         else if(n==4) BMR = 1.725f;
         else if(n==5) BMR = 1.9f;
-        System.out.println("Your BMR = " + BMR);
+        System.out.println("Your BMR = " + BMR + " calories");
 
         calConstraint();
     }
@@ -78,8 +77,7 @@ public class NutritionPlan {
     }
 
     public static void main(String[] args) {
-        float fitness;
-        int generation = 500;
+        int generation = 2000;
         Individual fittest;
         getInput();
         setFood();
@@ -89,9 +87,8 @@ public class NutritionPlan {
         //myPop.printPopulation();
         for(int i=0 ; i<generation ;i++) {
             myPop.getFittest().getFitness();
-            System.out.println("Generation: " + i + " Fittest: " + myPop.getFittest().getFitness());
+            //System.out.println("Generation: " + i + " Fittest: " + myPop.getFittest().getFitness());
             myPop = GA.evolvePopulation(myPop);
-            //myPop.printOptimalFood();
         }
         System.out.println("Solution found!");
         System.out.println("Total cost:");

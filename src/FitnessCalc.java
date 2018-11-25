@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class FitnessCalc {
     public static float getFitness(Individual individual) {

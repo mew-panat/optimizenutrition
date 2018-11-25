@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class GA {
     //GA parameter
-    private static final double crossoverRate = 1;
+    private static final double crossoverRate = 0.95;
     private static final double mutationRate = 0.015;
-    private static final int selectionSize = 50;
+    private static final int selectionSize = 100;
     private static final boolean elitism = true;
 
     public static Population evolvePopulation(Population pop) {
@@ -41,6 +41,7 @@ public class GA {
     private static Individual crossover(Individual indiv1, Individual indiv2) {
         Individual newSol = new Individual();
         // Loop through genes
+        Random rn = new Random();
         for (int i = 0; i < indiv1.size(); i++) {
             // Crossover
             if (Math.random() <= crossoverRate) {
@@ -57,9 +58,9 @@ public class GA {
         // Loop through genes
         for (int i = 0; i < indiv.size(); i++) {
             Random rn = new Random();
-            if (rn.nextInt() <= mutationRate) {
+            if (rn.nextDouble() <= mutationRate) {
                 // Create random gene
-                int gene =  Math.abs(rn.nextInt() % 2);
+                int gene =  Math.abs(rn.nextInt()%2);
                 indiv.setGene(i, gene);
             }
         }
