@@ -1,10 +1,11 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class GA {
     //GA parameter
-    private static final double crossoverRate = 0.9;
-    private static final double mutationRate = 0.1;
-    private static final int selectionSize = 10;
+    private static final double crossoverRate = NutritionPlan.crossoverRate;
+    private static final double mutationRate = NutritionPlan.mutationRate;
+    private static final int tournamentSize = 10;
     private static final boolean elitism = true;
     final static int elitismCount = 5;
 
@@ -73,9 +74,9 @@ public class GA {
     // Select individuals for crossover
     private static Individual tournamentSelection(Population pop) {
         // Create a tournament population
-        Population tournament = new Population(selectionSize, false);
+        Population tournament = new Population(tournamentSize, false);
         // For each place in the tournament get a random individual
-        for (int i = 0; i < selectionSize; i++) {
+        for (int i = 0; i < tournamentSize; i++) {
             int randomId = (int) (Math.random() * pop.size());
             tournament.saveIndividual(i, pop.getIndividual(randomId));
         }

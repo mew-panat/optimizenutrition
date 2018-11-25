@@ -6,6 +6,10 @@ public class NutritionPlan {
     public static float lb_carb;
     public static float lb_fat;
     public static float ub_sugar;
+    public static int generation;
+    public static int populationSize;
+    public static double crossoverRate;
+    public static double mutationRate;
 
     public static void getInput(){
         Scanner reader = new Scanner(System.in);
@@ -24,7 +28,7 @@ public class NutritionPlan {
         System.out.println("\tpress 4 " + "very active\t\tHeavy exercise (6-7 days/week)");
         System.out.println("\tpress 5 " + "extra active\tVery hard exercise & physical job or 2x training");
         int n = reader.nextInt();
-        reader.close();
+
 
         if(gender.equals("m")){
             BMR = 66.5f + (13.75f * weight) + (5.003f * height) - (6.755f * age);
@@ -41,7 +45,25 @@ public class NutritionPlan {
 
         calConstraint();
     }
+    public static void inputParameter() {
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Number of Generetion: ");
+        generation = reader.nextInt();
+        System.out.println("Population size: ");
+        populationSize = reader.nextInt();
+        System.out.println("Crossover rate: ");
+        crossoverRate = reader.nextDouble();
+        System.out.println("Mutation rate: ");
+        mutationRate = reader.nextDouble();
+        reader.close();
+        System.out.println("Processing....\n");
+    }
 
+//    private static void setParameter(int population, double crossRate, double mutaRate){
+//        populationSize = population;
+//        crossoverRate = crossRate;
+//        mutationRate = mutaRate;
+//    }
     private static void calConstraint(){
         energy = BMR;
         lb_protein = 0.25f * energy / 4;
@@ -61,7 +83,6 @@ public class NutritionPlan {
     }
 
     public static void geneticAlgo() {
-        int generation = 1000;
         int duplicate = 0;
         Individual fittest;
         //initial population
@@ -96,6 +117,7 @@ public class NutritionPlan {
         bruteforce.bruteForceAlgo();
 
         System.out.println(" --- Genetic Algorithm --- \n");
+        inputParameter();
         geneticAlgo();
     }
 }
