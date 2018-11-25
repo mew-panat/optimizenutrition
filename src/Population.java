@@ -280,6 +280,6 @@ public class Population {
         if(!duplicateSnack) selectSnack.add(fit.getSnack(s1));
 
         //if one of duplicate flags are true, have duplicate food
-        return duplicateBeverage || duplicateMaindish || duplicateFruit || duplicateSnack;
+        return !(duplicateBeverage || duplicateMaindish || duplicateFruit || duplicateSnack);
     }
 }

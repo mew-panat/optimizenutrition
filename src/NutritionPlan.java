@@ -14,7 +14,7 @@ public class NutritionPlan {
     public static float ub_calcium;
     public static float fiber;
 
-    private static void getInput(){
+    public static void getInput(){
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter your gender: m (men) / f (female) ");
         String gender = reader.nextLine();
@@ -72,7 +72,7 @@ public class NutritionPlan {
                 + "Fiber < " + fiber + "\n");
     }
 
-    private static void setFood(){
+    public static void setFood(){
         FoodData.readFood();
     }
 
@@ -82,12 +82,12 @@ public class NutritionPlan {
         getInput();
         setFood();
         //initial population
-        Population myPop = new Population(100, true);
+        Population myPop = new Population(200, true);
         //print population
         //myPop.printPopulation();
         for(int i=0 ; i<generation ;i++) {
             myPop.getFittest().getFitness();
-            //System.out.println("Generation: " + i + " Fittest: " + myPop.getFittest().getFitness());
+            System.out.println("Generation: " + i + " Fittest: " + myPop.getFittest().getFitness());
             myPop = GA.evolvePopulation(myPop);
         }
         System.out.println("Solution found!");
