@@ -68,10 +68,6 @@ public class bruteforce{
         return true;
     }
     public static void bruteForceAlgo(){
-        NutritionPlan.getInput();
-        NutritionPlan.setFood();
-
-        //System.out.println(FoodData.getAllFoods());
 
         selectedBeverage.clear();
         selectedMainDish.clear();
@@ -122,7 +118,7 @@ public class bruteforce{
             snackMeal.add(aSnack.getBinary());
         }
 
-        System.out.println(beverageCount + " " + maindishCount + " " + fruitCount + " " + snackCount);
+        //System.out.println(beverageCount + " " + maindishCount + " " + fruitCount + " " + snackCount);
 
         float price;
         float minPrice = 3000;
@@ -132,8 +128,20 @@ public class bruteforce{
             selectedFruit.clear();
             selectedSnack.clear();
             for(int j = 0; j < maindishCount; j++){
+                selectedBeverage.clear();
+                selectedMainDish.clear();
+                selectedFruit.clear();
+                selectedSnack.clear();
                 for(int k = 0 ; k < fruitCount; k++){
+                    selectedBeverage.clear();
+                    selectedMainDish.clear();
+                    selectedFruit.clear();
+                    selectedSnack.clear();
                     for(int m = 0; m < snackCount; m++){
+                        selectedBeverage.clear();
+                        selectedMainDish.clear();
+                        selectedFruit.clear();
+                        selectedSnack.clear();
                         Food b1;
                         Food b2;
                         Food m1;
@@ -180,8 +188,8 @@ public class bruteforce{
                 }
             }
         }
-        System.out.println("Minimum is " + minPrice);
         if (optimalBeverage.size() > 0) {
+            System.out.println("Minimum is " + minPrice);
             System.out.println("2 Beverages: " + optimalBeverage.get(0).getName() + " " + optimalBeverage.get(1).getName()
                     + "\n3 Main Dishes: " + optimalMainDish.get(0).getName() + " " + optimalMainDish.get(1).getName()
                     + " " + optimalMainDish.get(2).getName()

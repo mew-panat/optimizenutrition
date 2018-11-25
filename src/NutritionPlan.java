@@ -33,10 +33,10 @@ public class NutritionPlan {
             BMR = 665.1f + (9.563f  * weight) + (1.85f  * height) - (4.676f  * age);
         }
         if(n == 1) BMR = BMR*1.2f;
-        else if(n==2) BMR = 1.375f;
-        else if(n==3) BMR = 1.55f;
-        else if(n==4) BMR = 1.725f;
-        else if(n==5) BMR = 1.9f;
+        else if(n==2) BMR = BMR*1.375f;
+        else if(n==3) BMR = BMR*1.55f;
+        else if(n==4) BMR = BMR*1.725f;
+        else if(n==5) BMR = BMR*1.9f;
         System.out.println("Your BMR = " + BMR + " calories");
 
         calConstraint();
@@ -60,24 +60,42 @@ public class NutritionPlan {
         FoodData.readFood();
     }
 
-    public static void main(String[] args) {
-        int generation = 5000;
+    public static void geneticAlgo() {
+        int generation = 1000;
+        int duplicate = 0;
         Individual fittest;
-        getInput();
-        setFood();
         //initial population
         Population myPop = new Population(120, true);
         //print population
         //myPop.printPopulation();
-        for(int i=0 ; i<generation ;i++) {
-            myPop.getFittest().getFitness();
+        for (int i = 0; i < generation; i++) {
+            float fitness = myPop.getFittest().getFitness();
             //System.out.println("Generation: " + i + " Fittest: " + myPop.getFittest().getFitness());
             myPop = GA.evolvePopulation(myPop);
+            if (fitness == myPop.getFittest().getFitness()) {
+                duplicate++;
+                //System.out.println(duplicate);
+            }
         }
-        System.out.println("Solution found!");
-        System.out.println("Total cost:");
-        fittest = myPop.getFittest();
-        System.out.println(fittest.getFitness());
-        myPop.printOptimalFood();
+        if (duplicate >= 1000) {
+            System.out.println("There is no available menu for you");
+        } else {
+            System.out.println("Solution found!");
+            System.out.println("Total cost:");
+            fittest = myPop.getFittest();
+            System.out.println(fittest.getFitness());
+            myPop.printOptimalFood();
+        }
+    }
+
+    public static void main(String[] args) {
+        getInput();
+        setFood();
+
+        System.out.println(" --- Brute Force Algorithm --- \n");
+        bruteforce.bruteForceAlgo();
+
+        System.out.println(" --- Genetic Algorithm --- \n");
+        geneticAlgo();
     }
 }
