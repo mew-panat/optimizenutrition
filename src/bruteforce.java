@@ -12,10 +12,10 @@ public class bruteforce{
     private static List<Food> optimalFruit = new ArrayList<>();
     private static List<Food> optimalSnack = new ArrayList<>();
     private static List<Food> optimal = new ArrayList<>();
-    private static boolean range(double i, double LB, double UB){
+    private static boolean range(float i, float LB, float UB){
         return i >= LB && i <= UB;
     }
-    private static int getDayPrice(){
+    private static float getDayPrice(){
         int price = 0;
         for (Food f : selectedBeverage) {
             price += f.getPrice();
@@ -32,12 +32,12 @@ public class bruteforce{
         return price;
     }
     private static boolean checkConstraints() {
-        double protein = 0.0;
-        double carb = 0.0;
-        double fat = 0.0;
-        double sugar = 0.0;
-        double calcium = 0.0;
-        double fiber = 0.0;
+        float protein = 0;
+        float carb = 0;
+        float fat = 0;
+        float sugar = 0;
+        float calcium = 0;
+        float fiber = 0;
         for (Food f : selectedBeverage) {
             protein += f.getProtein();
             carb += f.getCarb();
@@ -139,17 +139,13 @@ public class bruteforce{
         double price;
         double minPrice = 3000;
         for (int i = 0; i < beverageCount; i++) {
-            System.out.print("*");
             selectedBeverage.clear();
             selectedMainDish.clear();
             selectedFruit.clear();
             selectedSnack.clear();
             for(int j = 0; j < maindishCount; j++){
-                System.out.print("#");
                 for(int k = 0 ; k < fruitCount; k++){
-                    System.out.print("+");
                     for(int m = 0; m < snackCount; m++){
-                        System.out.print("-");
                         Food b1;
                         Food b2;
                         Food m1;
